@@ -1,0 +1,242 @@
+/* Register, Login, OTP, Forgot Password, Join Room, NotFound: sab ek jaise (AuthLayout) */
+
+.auth-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: calc(24px + env(safe-area-inset-top, 0px)) 16px calc(24px + env(safe-area-inset-bottom, 0px));
+  background:
+    radial-gradient(ellipse 70% 60% at 10% 45%, rgba(130, 16, 16, 0.32), transparent 70%),
+    #121212;
+}
+
+/* ---- Brand (logo + naam) ---- */
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.auth-brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: #e01e1e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+.auth-brand-name {
+  color: white;
+  font-size: clamp(22px, 6vw, 30px);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.auth-tagline {
+  color: #888;
+  font-size: 14px;
+  margin: 0 0 22px;
+  text-align: center;
+}
+
+/* ---- Card ---- */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #1a1a1a;
+  border: 1px solid #262626;
+  border-radius: 16px;
+  padding: clamp(20px, 5vw, 32px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+.auth-title {
+  color: white;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.auth-text {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.auth-text strong {
+  color: white;
+}
+.auth-hint {
+  color: #888;
+  font-size: 12px;
+  margin: -6px 0 14px;
+}
+
+/* ---- Input (icon ke saath) ---- */
+.auth-field {
+  position: relative;
+  margin-bottom: 14px;
+}
+.auth-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  display: flex;
+  pointer-events: none;
+}
+/* 16px: iPhone isse chhote font par tap karte hi page zoom kar deta hai */
+.auth-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: #262626;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+}
+.auth-input::placeholder {
+  color: #777;
+}
+.auth-input.has-icon {
+  padding-left: 44px;
+}
+.auth-input.has-toggle {
+  padding-right: 48px;
+}
+.auth-input:focus {
+  outline: none;
+  border-color: #e01e1e;
+}
+.auth-input--code {
+  text-align: center;
+  letter-spacing: 4px;
+  font-family: monospace;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.auth-toggle {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ---- Buttons ---- */
+.auth-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 4px;
+  background: #e01e1e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.auth-linkbutton {
+  background: none;
+  border: none;
+  color: #e01e1e;
+  font-size: 14px;
+  min-height: 40px;
+  padding: 0 6px;
+  cursor: pointer;
+}
+.auth-linkbutton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---- Message boxes ---- */
+.auth-error,
+.auth-notice,
+.auth-success {
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+.auth-error {
+  background: #3a1a1a;
+  color: #ffb3b3;
+}
+.auth-notice {
+  background: #3a2a0a;
+  color: #f0c36b;
+}
+.auth-success {
+  background: #12301a;
+  color: #b9f5c8;
+}
+
+/* ---- Footer ---- */
+.auth-footer {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 18px;
+}
+.auth-link {
+  color: #e01e1e;
+  text-decoration: none;
+  font-weight: 600;
+}
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* ---- OTP ke 6 box: chhoti screen par apne aap patle ho jate hain ---- */
+.otp-row {
+  display: flex;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 10px);
+  margin-bottom: 18px;
+}
+.otp-box {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 52px;
+  height: 56px;
+  padding: 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  background: #262626;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: white;
+}
+.otp-box:focus {
+  outline: none;
+  border-color: #e01e1e;
+}
+.auth-timer {
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 14px;
+}
+.auth-timer--expired {
+  color: #ff6b6b;
+}

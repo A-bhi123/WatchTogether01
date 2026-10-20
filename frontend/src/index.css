@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar, select jaise browser ke apne widgets bhi dark dikhein */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* phone ghumane par text ka size khud na badle */
+}
+
+body {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  background: #0a0a0a;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none; /* pull-to-refresh se Room na ruke */
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Double-tap zoom ka 300ms ka intezaar aur dabane par neela flash hatao */
+button,
+a,
+input,
+select {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keyboard se chalne waalon ko dikhe ki focus kahan hai */
+:focus-visible {
+  outline: 2px solid #e01e1e;
+  outline-offset: 2px;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
