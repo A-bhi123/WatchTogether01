@@ -1,0 +1,34 @@
+@'
+# Dependencies
+node_modules/
+
+# Secrets (asli keys kabhi nahi). .env.example chalta hai
+.env
+.env.*
+!.env.example
+
+# Uploaded movies (bade aur private)
+backend/uploads/*
+!backend/uploads/.gitkeep
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.webm
+
+# Build output
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+'@ | Set-Content -Path .gitignore -Encoding ascii
