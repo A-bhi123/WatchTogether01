@@ -1,0 +1,2 @@
+-- Har user ka "token ka version". Password reset par ye badhta hai, aur purane saare login token bekaar ho jate hain
+ALTER TABLE users ADD COLUMN IF NOT EXISTS token_version INTEGER NOT NULL DEFAULT 0;
