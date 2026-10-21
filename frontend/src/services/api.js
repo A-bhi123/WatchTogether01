@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-export const API_ORIGIN = 'http://localhost:5000';
+// Development (npm run dev): backend localhost:5000 par.
+// Production (npm run build): khaali, yani isi website ka address (Nginx /api ko backend tak pahunchata hai).
+// Frontend aur API alag domain par ho to build se pehle VITE_API_URL=https://api.example.com set karo.
+export const API_ORIGIN = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:5000' : '');
 
 const NETWORK_MESSAGE = "Can't reach the server. Check your internet connection and try again.";
 const TIMEOUT_MESSAGE = 'The server took too long to respond. Please try again.';
