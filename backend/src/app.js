@@ -15,6 +15,10 @@ const { apiLimiter } = require('./middleware/rateLimiters');
 
 const app = express();
 
+// Nginx ke peeche chalte hain to asli user ka IP X-Forwarded-For se lo. Isse pehle sab 127.0.0.1 dikhte,
+// aur rate limit / login lockout poori site ko ek hi insaan maan lete. TRUST_PROXY=1 matlab "ek proxy (Nginx) par bharosa".
+app.set('trust proxy', Number(process.env.TRUST_PROXY) || false);
+
 // Security headers (X-Content-Type-Options, HSTS, wagairah). "same-site" isliye ki hamari frontend
 // (localhost:5173) alag port se <video> mein movie load karti hai. Default "same-origin" use rok deta.
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'same-site' } }));

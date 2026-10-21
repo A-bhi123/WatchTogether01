@@ -6,7 +6,7 @@ const { getPlayerState, applyPlayerUpdate, freezeSession } = require('../service
 const { announceJoin, announceLeave, registerRtcHandlers } = require('./rtc');
 const { registerHostHandlers } = require('./host');
 const { registerSocketRateLimits } = require('./rateLimit');
-
+const { buildIceServers } = require('../services/turn.service');
 // Frontend ke DELETE_WINDOW_HOURS jaisa hi rakho
 const DELETE_FOR_EVERYONE_HOURS = 60;
 const PLAYER_REASONS = ['play', 'pause', 'seek'];
@@ -70,6 +70,8 @@ function initSockets(io) {
     let currentRoomId = null;
     let currentHostId = null;
     registerSocketRateLimits(socket); // socket events par flood limit
+    // Har connection par taaza STUN/TURN list (TURN ke credentials user ke hisaab se, kuch ghante mein expire)
+    socket.emit('rtc:ice-servers', buildIceServers(socket.user.id));
     registerRtcHandlers(io, socket, () => currentRoomCode);
     registerHostHandlers(io, socket, () => ({
       roomCode: currentRoomCode,

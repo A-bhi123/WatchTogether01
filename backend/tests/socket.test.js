@@ -98,6 +98,18 @@ describe('real-time sockets', () => {
       assert.equal(socket.connected, true);
     });
 
+        it('hands out ICE servers (STUN, and TURN when configured) right after connecting', async () => {
+      const user = await createUser();
+      const socket = open(authCookie(user));
+      const servers = await once(socket, 'rtc:ice-servers');
+
+      assert.ok(Array.isArray(servers));
+      assert.ok(servers.some((server) => String(server.urls).startsWith('stun:')));
+      if (process.env.TURN_SECRET) {
+        assert.equal(JSON.stringify(servers).includes(process.env.TURN_SECRET), false);
+      }
+    });
+
     it('refuses a token issued before a password reset', async () => {
       const user = await createUser();
       const oldToken = tokenFor(user);
